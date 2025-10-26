@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMS - Flights</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-theme="dark">
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="theme-toggle">
+        <span class="theme-icon" id="theme-icon">🌙</span>
+        <span id="theme-text">Dark Mode</span>
+    </div>
+
+    <!-- Hero Section (Light Theme Only) -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Flight Operations</h1>
+            <p>Manage all flight schedules and statuses</p>
+        </div>
+    </section>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="nav-logo">✈</span>
+                Airport Management System
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Dashboard</a></li>
+                <li><a href="flights.html" class="nav-link active">Flights</a></li>
+                <li><a href="passengers.html" class="nav-link">Passengers</a></li>
+                <li><a href="staff.html" class="nav-link">Staff</a></li>
+                <li><a href="gates.html" class="nav-link">Gates</a></li>
+                <li><a href="admin.html" class="nav-link">Admin</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Image Gallery (Light Theme Only) -->
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/912050/pexels-photo-912050.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Commercial Aircraft">
+                    <div class="gallery-overlay">
+                        <h3>Commercial Fleet</h3>
+                        <p>Modern passenger aircraft</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/2026324/pexels-photo-2026324.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Runway Operations">
+                    <div class="gallery-overlay">
+                        <h3>Runway Management</h3>
+                        <p>Efficient takeoff and landing</p>
+                    </div>
+                </div>
+            </div>
+
+            <header class="page-header">
+                <h1>Flight Operations</h1>
+                <p class="page-subtitle">Manage all flight schedules and statuses</p>
+            </header>
+
+            <div class="control-panel">
+                <button class="btn btn-primary" id="add-flight-btn">+ Add New Flight</button>
+                <div class="search-filter">
+                    <input type="text" id="flight-search" placeholder="Search flights..." class="search-input">
+                    <select id="status-filter" class="filter-select">
+                        <option value="">All Statuses</option>
+                        <option value="On Time">On Time</option>
+                        <option value="Delayed">Delayed</option>
+                        <option value="Departed">Departed</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Flight No.</th>
+                            <th>Origin</th>
+                            <th>Destination</th>
+                            <th>Departure</th>
+                            <th>Gate</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="flights-table-body">
+                        <tr>
+                            <td colspan="7" class="loading-cell">Loading flights...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add/Edit Flight Modal -->
+    <div id="flight-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Add New Flight</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="flight-form">
+                <div class="form-group">
+                    <label for="flight-number">Flight Number</label>
+                    <input type="text" id="flight-number" required placeholder="e.g., AA123">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="origin">Origin</label>
+                        <input type="text" id="origin" required placeholder="e.g., New York">
+                    </div>
+                    <div class="form-group">
+                        <label for="destination">Destination</label>
+                        <input type="text" id="destination" required placeholder="e.g., Los Angeles">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="departure-time">Departure Time</label>
+                        <input type="datetime-local" id="departure-time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gate">Gate</label>
+                        <input type="text" id="gate" required placeholder="e.g., A12">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select id="status" required>
+                        <option value="On Time">On Time</option>
+                        <option value="Delayed">Delayed</option>
+                        <option value="Departed">Departed</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-flight">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Flight</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/flights.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/theme-toggle.js"></script>
+</body>
+</html>

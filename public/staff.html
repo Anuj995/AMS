@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMS - Staff</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-theme="dark">
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="theme-toggle">
+        <span class="theme-icon" id="theme-icon">🌙</span>
+        <span id="theme-text">Dark Mode</span>
+    </div>
+
+    <!-- Hero Section (Light Theme Only) -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Staff Management</h1>
+            <p>Manage personnel and flight assignments</p>
+        </div>
+    </section>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="nav-logo">✈</span>
+                Airport Management System
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Dashboard</a></li>
+                <li><a href="flights.html" class="nav-link">Flights</a></li>
+                <li><a href="passengers.html" class="nav-link">Passengers</a></li>
+                <li><a href="staff.html" class="nav-link active">Staff</a></li>
+                <li><a href="gates.html" class="nav-link">Gates</a></li>
+                <li><a href="admin.html" class="nav-link">Admin</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Image Gallery (Light Theme Only) -->
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/1309644/pexels-photo-1309644.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Airport Staff">
+                    <div class="gallery-overlay">
+                        <h3>Professional Team</h3>
+                        <p>Experienced aviation professionals</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/2026324/pexels-photo-2026324.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Ground Crew">
+                    <div class="gallery-overlay">
+                        <h3>Ground Operations</h3>
+                        <p>Skilled ground support team</p>
+                    </div>
+                </div>
+            </div>
+
+            <header class="page-header">
+                <h1>Staff Management</h1>
+                <p class="page-subtitle">Manage personnel and flight assignments</p>
+            </header>
+
+            <div class="control-panel">
+                <button class="btn btn-primary" id="add-staff-btn">+ Add Staff Member</button>
+                <div class="search-filter">
+                    <input type="text" id="staff-search" placeholder="Search staff..." class="search-input">
+                    <select id="role-filter" class="filter-select">
+                        <option value="">All Roles</option>
+                        <option value="Pilot">Pilot</option>
+                        <option value="Co-Pilot">Co-Pilot</option>
+                        <option value="Flight Attendant">Flight Attendant</option>
+                        <option value="Ground Crew">Ground Crew</option>
+                        <option value="Security">Security</option>
+                        <option value="Maintenance">Maintenance</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Employee ID</th>
+                            <th>Assigned Flight</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="staff-table-body">
+                        <tr>
+                            <td colspan="6" class="loading-cell">Loading staff...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add/Edit Staff Modal -->
+    <div id="staff-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Add New Staff Member</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="staff-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="staff-first-name">First Name</label>
+                        <input type="text" id="staff-first-name" required placeholder="Anuj">
+                    </div>
+                    <div class="form-group">
+                        <label for="staff-last-name">Last Name</label>
+                        <input type="text" id="staff-last-name" required placeholder="Kumar">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="employee-id">Employee ID</label>
+                        <input type="text" id="employee-id" required placeholder="EMP001">
+                    </div>
+                    <div class="form-group">
+                        <label for="staff-role">Role</label>
+                        <select id="staff-role" required>
+                            <option value="">Select Role</option>
+                            <option value="Pilot">Pilot</option>
+                            <option value="Co-Pilot">Co-Pilot</option>
+                            <option value="Flight Attendant">Flight Attendant</option>
+                            <option value="Ground Crew">Ground Crew</option>
+                            <option value="Security">Security</option>
+                            <option value="Maintenance">Maintenance</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="assigned-flight">Assigned Flight</label>
+                        <select id="assigned-flight">
+                            <option value="">No Assignment</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="staff-status">Status</label>
+                        <select id="staff-status" required>
+                            <option value="Active">Active</option>
+                            <option value="On Break">On Break</option>
+                            <option value="Off Duty">Off Duty</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-staff">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Staff Member</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/staff.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/theme-toggle.js"></script>
+</body>
+</html>

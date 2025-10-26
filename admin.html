@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMS - Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-theme="dark">
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="theme-toggle">
+        <span class="theme-icon" id="theme-icon">🌙</span>
+        <span id="theme-text">Dark Mode</span>
+    </div>
+
+    <!-- Hero Section (Light Theme Only) -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Administrative Control Panel</h1>
+            <p>System management and data operations</p>
+        </div>
+    </section>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="nav-logo">✈</span>
+                Airport Management System
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Dashboard</a></li>
+                <li><a href="flights.html" class="nav-link">Flights</a></li>
+                <li><a href="passengers.html" class="nav-link">Passengers</a></li>
+                <li><a href="staff.html" class="nav-link">Staff</a></li>
+                <li><a href="gates.html" class="nav-link">Gates</a></li>
+                <li><a href="admin.html" class="nav-link active">Admin</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Image Gallery (Light Theme Only) -->
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/2026324/pexels-photo-2026324.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Control Center">
+                    <div class="gallery-overlay">
+                        <h3>Command Center</h3>
+                        <p>Advanced monitoring systems</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Data Analytics">
+                    <div class="gallery-overlay">
+                        <h3>Data Analytics</h3>
+                        <p>Real-time insights and reports</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-section" class="admin-section">
+                <div class="login-container">
+                    <div class="login-header">
+                        <h1>Admin Access</h1>
+                        <p>Secure login required for administrative operations</p>
+                    </div>
+                    <form id="login-form" class="login-form">
+                        <div class="form-group">
+                            <label for="admin-email">Email</label>
+                            <input type="email" id="admin-email" required placeholder="admin@airport.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-password">Password</label>
+                            <input type="password" id="admin-password" required placeholder="Enter password">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Access Admin Panel</button>
+                    </form>
+                    <div class="demo-credentials">
+                        <p><strong>Demo Credentials:</strong></p>
+                        <p>Email: admin@airport.com</p>
+                        <p>Password: admin123</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Panel -->
+            <div id="admin-panel" class="admin-section" style="display: none;">
+                <header class="page-header">
+                    <div class="admin-header">
+                        <div>
+                            <h1>Administrative Control Panel</h1>
+                            <p class="page-subtitle">System management and data operations</p>
+                        </div>
+                        <button id="logout-btn" class="btn btn-secondary">Logout</button>
+                    </div>
+                </header>
+
+                <div class="admin-grid">
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h3>Database Operations</h3>
+                            <span class="admin-icon">🗄️</span>
+                        </div>
+                        <div class="admin-card-content">
+                            <p>Manage database records and perform bulk operations</p>
+                            <div class="admin-actions">
+                                <button class="btn btn-primary" id="backup-data">Backup Data</button>
+                                <button class="btn btn-warning" id="clear-logs">Clear Logs</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h3>System Analytics</h3>
+                            <span class="admin-icon">📊</span>
+                        </div>
+                        <div class="admin-card-content">
+                            <div class="analytics-stats">
+                                <div class="stat-item">
+                                    <span class="stat-value" id="admin-total-flights">0</span>
+                                    <span class="stat-label">Total Flights</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value" id="admin-total-passengers">0</span>
+                                    <span class="stat-label">Total Passengers</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value" id="admin-total-staff">0</span>
+                                    <span class="stat-label">Staff Members</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h3>System Health</h3>
+                            <span class="admin-icon">💚</span>
+                        </div>
+                        <div class="admin-card-content">
+                            <div class="health-indicators">
+                                <div class="health-item">
+                                    <span class="health-label">Database</span>
+                                    <span class="health-status status-online" id="db-status">Online</span>
+                                </div>
+                                <div class="health-item">
+                                    <span class="health-label">Firebase Auth</span>
+                                    <span class="health-status status-online" id="auth-status">Online</span>
+                                </div>
+                                <div class="health-item">
+                                    <span class="health-label">System Load</span>
+                                    <span class="health-status status-normal" id="load-status">Normal</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h3>Quick Actions</h3>
+                            <span class="admin-icon">⚡</span>
+                        </div>
+                        <div class="admin-card-content">
+                            <div class="quick-actions">
+                                <button class="btn btn-outline" id="generate-sample-data">Generate Sample Data</button>
+                                <button class="btn btn-outline" id="export-reports">Export Reports</button>
+                                <button class="btn btn-outline" id="system-maintenance">System Maintenance</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="admin-logs">
+                    <h3>System Activity Log</h3>
+                    <div class="log-container" id="admin-logs">
+                        <div class="log-entry">
+                            <span class="log-time">[System Ready]</span>
+                            <span class="log-message">Admin panel initialized successfully</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/admin.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/theme-toggle.js"></script>
+</body>
+</html>

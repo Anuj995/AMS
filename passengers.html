@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMS - Passengers</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-theme="dark">
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="theme-toggle">
+        <span class="theme-icon" id="theme-icon">🌙</span>
+        <span id="theme-text">Dark Mode</span>
+    </div>
+
+    <!-- Hero Section (Light Theme Only) -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Passenger Registry</h1>
+            <p>Manage passenger information and check-ins</p>
+        </div>
+    </section>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="nav-logo">✈</span>
+                Airport Management System
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Dashboard</a></li>
+                <li><a href="flights.html" class="nav-link">Flights</a></li>
+                <li><a href="passengers.html" class="nav-link active">Passengers</a></li>
+                <li><a href="staff.html" class="nav-link">Staff</a></li>
+                <li><a href="gates.html" class="nav-link">Gates</a></li>
+                <li><a href="admin.html" class="nav-link">Admin</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Image Gallery (Light Theme Only) -->
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/2026324/pexels-photo-2026324.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Passenger Terminal">
+                    <div class="gallery-overlay">
+                        <h3>Passenger Services</h3>
+                        <p>Premium travel experience</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/1309644/pexels-photo-1309644.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Check-in Counter">
+                    <div class="gallery-overlay">
+                        <h3>Check-in Services</h3>
+                        <p>Fast and efficient processing</p>
+                    </div>
+                </div>
+            </div>
+
+            <header class="page-header">
+                <h1>Passenger Registry</h1>
+                <p class="page-subtitle">Manage passenger information and check-ins</p>
+            </header>
+
+            <div class="control-panel">
+                <button class="btn btn-primary" id="add-passenger-btn">+ Register Passenger</button>
+                <div class="search-filter">
+                    <input type="text" id="passenger-search" placeholder="Search passengers..." class="search-input">
+                    <select id="flight-filter" class="filter-select">
+                        <option value="">All Flights</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Flight Number</th>
+                            <th>Seat Number</th>
+                            <th>Check-in Status</th>
+                            <th>Boarding Pass</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="passengers-table-body">
+                        <tr>
+                            <td colspan="6" class="loading-cell">Loading passengers...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add/Edit Passenger Modal -->
+    <div id="passenger-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Register New Passenger</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="passenger-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" required placeholder="John">
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" required placeholder="Doe">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="passenger-flight">Flight Number</label>
+                        <select id="passenger-flight" required>
+                            <option value="">Select Flight</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="seat-number">Seat Number</label>
+                        <input type="text" id="seat-number" required placeholder="e.g., 12A">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required placeholder="john.doe@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" required placeholder="+1 234 567 8900">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="check-in-status">Check-in Status</label>
+                    <select id="check-in-status" required>
+                        <option value="Not Checked In">Not Checked In</option>
+                        <option value="Checked In">Checked In</option>
+                        <option value="Boarded">Boarded</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-passenger">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Passenger</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/passengers.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/theme-toggle.js"></script>
+</body>
+</html>
